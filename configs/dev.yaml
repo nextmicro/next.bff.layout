@@ -1,0 +1,69 @@
+# ID
+id: '1001'
+# 名称
+name: next.bff.layout
+# 版本号
+version: v1.0.0
+# 服务元数据
+metadata:
+  color: feature-v1
+# 日志配置
+logger:
+  level: debug
+  console: true
+# 注册中心配置
+registry:
+  name: consul
+  addrs: '127.0.0.1:8500'
+# 链路追踪配置
+tracing:
+  endpoint: 'http://127.0.0.1:14268/api/traces'
+  sampler: 1
+# 客户端配置
+client:
+  gateway:
+    '@type': type.googleapis.com/next.config.v1.HTTPClient
+    timeout: 1s
+    endpoint: 'discovery:///gateway'
+    middlewares:
+      - name: logging
+        options:
+          '@type': type.googleapis.com/next.middleware.logging.v1.Logging
+      - name: tracing
+        options:
+          '@type': type.googleapis.com/next.middleware.tracing.v1.Tracing
+      - name: metadata
+        options:
+          '@type': type.googleapis.com/next.middleware.metadata.v1.Metadata
+          prefix: []
+
+# 服务配置
+server:
+  http:
+    addr: '0.0.0.0:8000'
+    timeout: 1s
+    middlewares:
+      - name: logging
+        options:
+          '@type': type.googleapis.com/next.middleware.logging.v1.Logging
+      - name: tracing
+        options:
+          '@type': type.googleapis.com/next.middleware.tracing.v1.Tracing
+      - name: metadata
+        options:
+          '@type': type.googleapis.com/next.middleware.metadata.v1.Metadata
+          prefix: []
+  grpc:
+    addr: '0.0.0.0:9000'
+    timeout: 1s
+    middlewares:
+      - name: logging
+        options:
+          '@type': type.googleapis.com/next.middleware.logging.v1.Logging
+      - name: tracing
+        options:
+          '@type': type.googleapis.com/next.middleware.tracing.v1.Tracing
+      - name: metadata
+        options:
+          '@type': type.googleapis.com/next.middleware.metadata.v1.Metadata
+          prefix: []

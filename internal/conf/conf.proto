@@ -1,0 +1,31 @@
+syntax = "proto3";
+package next.api;
+
+option go_package = "next.bff.layout/internal/conf;conf";
+
+import "google/protobuf/any.proto";
+import "google/protobuf/duration.proto";
+
+message Bootstrap {
+  Client client = 1;
+  Data data = 2;
+}
+
+message Client {
+  google.protobuf.Any gateway = 1;
+}
+
+message Data {
+  message Database {
+    string driver = 1;
+    string source = 2;
+  }
+  message Redis {
+    string network = 1;
+    string addr = 2;
+    google.protobuf.Duration read_timeout = 3;
+    google.protobuf.Duration write_timeout = 4;
+  }
+  Database database = 1;
+  Redis redis = 2;
+}
