@@ -7,15 +7,12 @@ require (
 	github.com/google/wire v0.5.0
 	github.com/nextmicro/logger v1.0.3
 	github.com/nextmicro/next v1.0.6
-	github.com/nextmicro/next.data.layout v0.0.0-00010101000000-000000000000
 	github.com/prometheus/client_golang v1.17.0
 	go.uber.org/automaxprocs v1.5.1
 	google.golang.org/genproto/googleapis/api v0.0.0-20231106174013-bbf56f31fb17
 	google.golang.org/grpc v1.59.0
 	google.golang.org/protobuf v1.31.0
 )
-
-replace github.com/nextmicro/next.data.layout => /Users/jeffreybool/code/go/src/github.com/nextmicro/next.data.layout
 
 require (
 	github.com/IBM/sarama v1.42.1 // indirect
