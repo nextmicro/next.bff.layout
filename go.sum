@@ -115,8 +115,8 @@ github.com/go-kratos/kratos/contrib/registry/consul/v2 v2.0.0-20231116090954-1e4
 github.com/go-kratos/kratos/contrib/registry/consul/v2 v2.0.0-20231116090954-1e4e37ad8735/go.mod h1:Z0S93CabLk3OdvQUoV1eTnwjHLAY8bZa+oOOU9sLQc8=
 github.com/go-kratos/kratos/contrib/registry/etcd/v2 v2.0.0-20231116090954-1e4e37ad8735 h1:2a7kQPHe4QBx7XRo3Goi4wrve/JtCLfk44VnnpC/Sls=
 github.com/go-kratos/kratos/contrib/registry/etcd/v2 v2.0.0-20231116090954-1e4e37ad8735/go.mod h1:GA9kKG8JpKHWHSKoW4r4R41J4vKYkGAUuItIOns2Dpk=
-github.com/go-kratos/kratos/v2 v2.7.2-0.20231113102135-421dbc7dae0f h1:cJwDta/Zxn2JF/3qMih1XoyvmvuOX4kAeNBTYqRCy0o=
-github.com/go-kratos/kratos/v2 v2.7.2-0.20231113102135-421dbc7dae0f/go.mod h1:KW6lYnc9WxCPRp5YXIXKuSI5H25SNQ1Npw95K4H4ojM=
+github.com/go-kratos/kratos/v2 v2.7.2-0.20231116090954-1e4e37ad8735 h1:94HxxDU5+43VENUe14tT/ynWYDCYNjY7ZzSRJShOEKM=
+github.com/go-kratos/kratos/v2 v2.7.2-0.20231116090954-1e4e37ad8735/go.mod h1:KW6lYnc9WxCPRp5YXIXKuSI5H25SNQ1Npw95K4H4ojM=
 github.com/go-logfmt/logfmt v0.3.0/go.mod h1:Qt1PoO58o5twSAckw1HlFXLmHsOX5/0LbT9GBnD5lWE=
 github.com/go-logfmt/logfmt v0.4.0/go.mod h1:3RMwSq7FuexP4Kalkev3ejPJsZTpXXBr9+V4qmtdjCk=
 github.com/go-logr/logr v1.2.2/go.mod h1:jdQByPbusPIv2/zmleS9BjJVeZ6kBagPoEUsqbVz/1A=
@@ -181,6 +181,7 @@ github.com/gorilla/mux v1.8.1 h1:TuBL49tXwgrFYWhqrNgrUNEY92u81SPhu7sTdzQEiWY=
 github.com/gorilla/mux v1.8.1/go.mod h1:AKf9I4AEqPTmMytcMc0KkNouC66V3BtZ4qD5fmWSiMQ=
 github.com/gorilla/securecookie v1.1.1/go.mod h1:ra0sb63/xPlUeL+yeDciTfxMRAA+MP+HVt/4epWDjd4=
 github.com/gorilla/sessions v1.2.1/go.mod h1:dk2InVEVJ0sfLlnXv9EAgkf6ecYs/i80K/zI+bUmuGM=
+github.com/grpc-ecosystem/grpc-gateway v1.16.0 h1:gmcG1KaJ57LophUzW0Hy8NmPhnMZb4M0+kPpLofRdBo=
 github.com/grpc-ecosystem/grpc-gateway/v2 v2.18.1 h1:6UKoz5ujsI55KNpsJH3UwCq3T8kKbZwNZBNPuTTje8U=
 github.com/grpc-ecosystem/grpc-gateway/v2 v2.18.1/go.mod h1:YvJ2f6MplWDhfxiUC3KpyTy76kYUZA4W3pTv/wdKQ9Y=
 github.com/hashicorp/consul/api v1.26.1 h1:5oSXOO5fboPZeW5SN+TdGFP/BILDgBm19OrPZ/pICIM=
@@ -287,6 +288,7 @@ github.com/mattn/go-isatty v0.0.16/go.mod h1:kYGgaQfpe5nmfYZH+SKPsOc2e4SrIfOl2e/
 github.com/mattn/go-isatty v0.0.20 h1:xfD0iDuEKnDkl03q4limB+vH+GxLEtL/jb4xVJSWWEY=
 github.com/mattn/go-isatty v0.0.20/go.mod h1:W+V8PltTTMOvKvAeJH7IuucS94S2C6jfK/D7dTCTo3Y=
 github.com/matttproud/golang_protobuf_extensions v1.0.1/go.mod h1:D8He9yQNgCq6Z5Ld7szi9bcBfOoFv/3dc6xSMkL2PC0=
+github.com/matttproud/golang_protobuf_extensions v1.0.4 h1:mmDVorXM7PCGKw94cs5zkfA9PSy5pEvNWRP0ET0TIVo=
 github.com/matttproud/golang_protobuf_extensions/v2 v2.0.0 h1:jWpvCLoY8Z/e3VKvlsiIGKtc+UG6U5vzxaoagmhXfyg=
 github.com/matttproud/golang_protobuf_extensions/v2 v2.0.0/go.mod h1:QUyp042oQthUoa9bqDv0ER0wrtXnBruoNd7aNjkbP+k=
 github.com/miekg/dns v1.1.26/go.mod h1:bPDLeHnStXmXAq1m/Ch/hvfNHr14JKNPMBo3VZKjuso=
@@ -315,6 +317,8 @@ github.com/nextmicro/gokit/trace v1.0.7 h1:rXZshNE8NwWoWQXCGeVMhNH36RoeIp6yGt8VR
 github.com/nextmicro/gokit/trace v1.0.7/go.mod h1:/KRUm69kIMJIKoUhAxR98qtDASD42MqRNZk/QDH3Zwo=
 github.com/nextmicro/logger v1.0.3 h1:kf0BGJNOt0R8wsy4Ul2/0kY6r9HzcIh+fgeCEQ5y7jU=
 github.com/nextmicro/logger v1.0.3/go.mod h1:/+xoWu/OgzZy0wD1kEFP67pt1lH2dH/443nzoLm/CuA=
+github.com/nextmicro/next v1.0.6 h1:Bo4YFgllBP8mCPw3vwVKvHMZUWhY+a81SXLrAGf2sb4=
+github.com/nextmicro/next v1.0.6/go.mod h1:3XDQYaHZ6jLgGr3PCV7G6IsQWPZVbD01qzrWlI9cPQ0=
 github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e/go.mod h1:zD1mROLANZcx1PVRCS0qkT7pwLkGfwJo4zjcN/Tysno=
 github.com/opentracing/opentracing-go v1.2.1-0.20220228012449-10b1cf09e00b h1:FfH+VrHHk6Lxt9HdVS0PXzSXFyS2NbZKXv33FYPol0A=
 github.com/opentracing/opentracing-go v1.2.1-0.20220228012449-10b1cf09e00b/go.mod h1:AC62GU6hc0BrNm+9RK9VSiwa/EUe1bkIeFORAMcHvJU=
