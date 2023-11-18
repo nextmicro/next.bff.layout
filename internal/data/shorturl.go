@@ -21,7 +21,7 @@ func NewShortUrlRepo(data *Data, logger logger.Logger) biz.ShortUrlRepo {
 }
 
 func (s *ShortUrlRepo) Expand(ctx context.Context, shorten string) (string, error) {
-	reply, err := s.data.shortUrl.Expand(ctx, &shortUrlV1.ExpandRequest{
+	reply, err := s.data.serviceContext.ShortUrlClient.Expand(ctx, &shortUrlV1.ExpandRequest{
 		Shorten: shorten,
 	})
 	if err != nil {
@@ -31,7 +31,7 @@ func (s *ShortUrlRepo) Expand(ctx context.Context, shorten string) (string, erro
 	return reply.Url, nil
 }
 func (s *ShortUrlRepo) Shorten(ctx context.Context, url string) (string, error) {
-	reply, err := s.data.shortUrl.Shorten(ctx, &shortUrlV1.ShortenRequest{
+	reply, err := s.data.serviceContext.ShortUrlClient.Shorten(ctx, &shortUrlV1.ShortenRequest{
 		Url: url,
 	})
 	if err != nil {

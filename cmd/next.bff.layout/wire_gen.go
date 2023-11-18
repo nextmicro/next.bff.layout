@@ -8,12 +8,12 @@ package main
 
 import (
 	"github.com/nextmicro/logger"
-	"github.com/nextmicro/next"
 	"next.bff.layout/internal/biz"
 	"next.bff.layout/internal/conf"
 	"next.bff.layout/internal/data"
 	"next.bff.layout/internal/server"
 	"next.bff.layout/internal/service"
+	"next.bff.layout/internal/svc"
 )
 
 import (
@@ -23,12 +23,9 @@ import (
 // Injectors from wire.go:
 
 // wireApp init next application.
-func wireApp(confData *conf.Data, client *conf.Client, loggerLogger logger.Logger) (*next.Next, func(), error) {
-	shortUrlHTTPClient, err := data.NewGatewayClient(client)
-	if err != nil {
-		return nil, nil, err
-	}
-	dataData, cleanup, err := data.NewData(confData, loggerLogger, shortUrlHTTPClient)
+func wireApp(confData *conf.Data, client *conf.Client, loggerLogger logger.Logger) (*Injector, func(), error) {
+	serviceContext := svc.NewServiceContext(client)
+	dataData, cleanup, err := data.NewData(confData, loggerLogger, serviceContext)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -39,12 +36,16 @@ func wireApp(confData *conf.Data, client *conf.Client, loggerLogger logger.Logge
 	greeterService := service.NewGreeterService(greeterUsecase, shortUrlUsecase)
 	grpcServer := server.NewGRPCServer(greeterService, loggerLogger)
 	httpServer := server.NewHTTPServer(greeterService, loggerLogger)
-	nextNext, err := newApp(loggerLogger, grpcServer, httpServer)
+	next, err := newApp(loggerLogger, grpcServer, httpServer)
 	if err != nil {
 		cleanup()
 		return nil, nil, err
 	}
-	return nextNext, func() {
+	injector := &Injector{
+		Next:           next,
+		serviceContext: serviceContext,
+	}
+	return injector, func() {
 		cleanup()
 	}, nil
 }

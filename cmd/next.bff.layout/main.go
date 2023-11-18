@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"os"
 	"path/filepath"
 
 	"github.com/nextmicro/logger"
@@ -10,6 +9,8 @@ import (
 	"github.com/nextmicro/next/config"
 	"github.com/nextmicro/next/transport/grpc"
 	"github.com/nextmicro/next/transport/http"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"next.bff.layout/internal/conf"
 
 	_ "go.uber.org/automaxprocs"
@@ -17,14 +18,8 @@ import (
 
 // go build -ldflags "-X main.Version=x.y.z"
 var (
-	// Name is the name of the compiled software.
-	Name string
-	// Version is the version of the compiled software.
-	Version string
 	// flagconf is the config flag.
 	flagconf string
-
-	id, _ = os.Hostname()
 )
 
 func init() {
@@ -32,16 +27,14 @@ func init() {
 }
 
 func newApp(logger logger.Logger, gs *grpc.Server, hs *http.Server) (*next.Next, error) {
+	hs.Handle("/metrics", promhttp.HandlerFor(prometheus.DefaultGatherer, promhttp.HandlerOpts{
+		DisableCompression: true,
+		EnableOpenMetrics:  true,
+	}))
+
 	return next.New(
-		next.ID(id),
-		next.Name(Name),
-		next.Version(Version),
-		next.Metadata(map[string]string{}),
 		next.Logger(logger),
-		next.Server(
-			gs,
-			hs,
-		),
+		next.Server(gs, hs),
 	)
 }
 
@@ -58,14 +51,20 @@ func main() {
 		panic(err)
 	}
 
-	app, cleanup, err := wireApp(bc.Data, bc.Client, logger.DefaultLogger)
+	injector, cleanup, err := wireApp(bc.Data, bc.Client, logger.DefaultLogger)
 	if err != nil {
 		panic(err)
 	}
+
+	err = injector.serviceContext.Run()
+	if err != nil {
+		panic(err)
+	}
+
 	defer cleanup()
 
 	// start and wait for stop signal
-	if err := app.Run(); err != nil {
+	if err = injector.Next.Run(); err != nil {
 		panic(err)
 	}
 }

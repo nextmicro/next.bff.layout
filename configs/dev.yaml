@@ -1,5 +1,5 @@
 # ID
-id: '1001'
+id: '1000'
 # 名称
 name: next.bff.layout
 # 版本号
@@ -16,19 +16,23 @@ registry:
   name: consul
   addrs: '127.0.0.1:8500'
 # 链路追踪配置
-tracing:
-  endpoint: 'http://127.0.0.1:14268/api/traces'
+telemetry:
+  endpoint: '127.0.0.1:4317'
   sampler: 1
+  exporter: otlpgrpc
 # 客户端配置
 client:
   gateway:
     '@type': type.googleapis.com/next.config.v1.HTTPClient
     timeout: 1s
-    endpoint: 'discovery:///gateway'
+    endpoint: discovery:///gateway
     middlewares:
       - name: logging
         options:
           '@type': type.googleapis.com/next.middleware.logging.v1.Logging
+      - name: metrics
+        options:
+          '@type': type.googleapis.com/next.middleware.metrics.v1.Metrics
       - name: tracing
         options:
           '@type': type.googleapis.com/next.middleware.tracing.v1.Tracing
@@ -46,6 +50,9 @@ server:
       - name: logging
         options:
           '@type': type.googleapis.com/next.middleware.logging.v1.Logging
+      - name: metrics
+        options:
+          '@type': type.googleapis.com/next.middleware.metrics.v1.Metrics
       - name: tracing
         options:
           '@type': type.googleapis.com/next.middleware.tracing.v1.Tracing
@@ -54,7 +61,7 @@ server:
           '@type': type.googleapis.com/next.middleware.metadata.v1.Metadata
           prefix: []
   grpc:
-    addr: '0.0.0.0:9000'
+    addr: '0.0.0.0:9002'
     timeout: 1s
     middlewares:
       - name: logging
